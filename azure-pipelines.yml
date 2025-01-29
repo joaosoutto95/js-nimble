@@ -1,0 +1,10 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - script: echo "Azure DevOps setup completed!"
+    displayName: 'Run a simple script'
+
