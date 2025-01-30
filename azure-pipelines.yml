@@ -24,7 +24,7 @@ jobs:
 
   - script: |
       echo "Basic CI/CD Pipeline"
-    displayName: 'Install Dependencies'
+    displayName: 'Script running'
 
   - script: |
       flake8 --max-line-length=100
