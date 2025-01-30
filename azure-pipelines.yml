@@ -3,19 +3,19 @@ trigger:
     exclude:
       - main
 
-pool:
-  name: Default
-  demands:
-    - Agent.Name -equals N23
-
 pr:
   branches:
     include:
       - '*'
 
+pool:
+  name: Default
+  demands:
+    - Agent.Name -equals N23
+
 jobs:
 - job: CI
-  displayName: 'Basic CI/CD'
+  displayName: 'Basic CI'
   pool:
     vmImage: 'ubuntu-latest'
 
@@ -28,7 +28,7 @@ jobs:
       addToPath: true
 
   - script: |
-      echo "Basic CI/CD Pipeline"
+      echo "Basic CI Pipeline"
     displayName: 'Script running'
 
   - script: |
@@ -38,3 +38,12 @@ jobs:
   - script: |
       pytest --cov=.
     displayName: 'Run Unit Tests and Generate Coverage Report'
+
+
+- job: Release
+  displayName: "Release Pipeline"
+  dependsOn: CI
+  condition: succeeded()
+  steps:
+    - script: echo "Basic Release Pipeline"
+      displayName: "Release"
