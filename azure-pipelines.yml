@@ -25,9 +25,6 @@ pool:
 jobs:
 - job: CI
   displayName: 'Basic CI'
-  pool:
-    vmImage: 'ubuntu-latest'
-
   steps:
   - checkout: self
 
