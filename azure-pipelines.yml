@@ -8,6 +8,9 @@ pr:
     include:
       - '*'
 
+pool:
+  name: Default
+
 jobs:
 - job: CI
   displayName: 'Basic CI/CD'
