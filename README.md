@@ -11,11 +11,14 @@
     ```sh
     func start
     ```
-7. Check if function is running correctly;\
+7. Check if function is running correctly;
 8. Make a request to the endpoint http://localhost:7071/api/process-data
     ```sh
     Invoke-WebRequest -Uri http://localhost:7071/api/process-data -Method Post
     ```
+9. After finishing running, the function will save 5 files starting with output_*, this are the results of the API request and model training;
+10. In the folder solution-part3 there is a .pbix file that ingest the data from the output files and plots analysis on dataset and model training results.
+
 ## Description of the Data Transformations
 
 - **Data Collection**: Extracted for public API the airplane passanger stats throughout the years (1950 to 1960) and inserted in a dataframe.
