@@ -1,14 +1,3 @@
-# trigger:
-#   - main
-
-# pool:
-#   name: 'Default'
-
-# steps:
-#   - script: echo "Azure DevOps setup completed!"
-#     displayName: 'Run a simple script'
-
-
 trigger:
   branches:
     exclude:
@@ -25,9 +14,6 @@ pool:
 jobs:
 - job: CI
   displayName: 'Basic CI'
-  pool:
-    vmImage: 'ubuntu-latest'
-
   steps:
   - checkout: self
 
