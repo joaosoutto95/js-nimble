@@ -1,10 +1,35 @@
 trigger:
-  - main
+  branches:
+    exclude:
+      - main
 
-pool:
-  name: 'Default'
+pr:
+  branches:
+    include:
+      - '*'
 
-steps:
-  - script: echo "Azure DevOps setup completed!"
-    displayName: 'Run a simple script'
+jobs:
+- job: CI
+  displayName: 'Basic CI/CD'
+  pool:
+    vmImage: 'ubuntu-latest'
 
+  steps:
+  - checkout: self
+
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.9'
+      addToPath: true
+
+  - script: |
+      echo "Basic CI/CD Pipeline"
+    displayName: 'Install Dependencies'
+
+  - script: |
+      flake8 --max-line-length=100
+    displayName: 'Code Linting'
+
+  - script: |
+      pytest --cov=.
+    displayName: 'Run Unit Tests and Generate Coverage Report'
