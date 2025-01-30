@@ -1,24 +1,21 @@
 # End-to-End solution Nimble
 
-## Setup Instructions (PowerShell code)
+## Setup Instructions (Running locally):
 
-1. Clone the repository:
+1. Clone the repository;
+2. Download and Setup Azure Functions Core Tools;
+3. Navigate to the folder solution-part2 inside the project root folder;
+4. Create and Activate a virtual enviroment;
+5. Pip install the requirements.txt;
+6. Use Azure Function command to run router;
     ```sh
-    git clone https://github.com/yourusername/js-nimble.git
+    func start
     ```
-2. Navigate to the project directory:
+7. Check if function is running correctly;\
+8. Make a request to the endpoint http://localhost:7071/api/process-data
     ```sh
-    cd js-nimble
+    Invoke-WebRequest -Uri http://localhost:7071/api/process-data -Method Post
     ```
-3. Install dependencies:
-    ```sh
-    
-    ```
-4. Run the application:
-    ```sh
-    
-    ```
-
 ## Description of the Data Transformations
 
 - **Data Collection**: Extracted for public API the airplane passanger stats throughout the years (1950 to 1960) and inserted in a dataframe.
@@ -27,14 +24,17 @@
 
 ## Explanation of the Visualizations
 
-The visualizations are generated using D3.js and can be found in the `visualizations` folder. The key visualizations include:
-- **Bar Charts**: Representing categorical data.
-- **Line Charts**: Showing trends over time.
-- **Scatter Plots**: Displaying relationships between two variables.
+The .pbx file inside solution-part3 folder has 2 pages:
+    - **FIRST PAGE**: 
+        - Plot with the distribution of the whole Air Passengers dataset that was used for training;
+        - Some KPI's as well that could help monitor the data quality that is being ingested on the model.
+    - **SECOND PAGE**: 
+        - Plot showing the Predicted values vs. Actual to show how well fitted the new trained model is;
+        - Model performance metrics on cards - MAPE, MAE, MSE, and RMSE;
+        - Feature Importance plot to show the corrilation on training.
 
 ## CI/CD Pipeline Description
 
-The CI/CD pipeline is configured using GitHub Actions and is defined in the `.github/workflows` folder. The pipeline includes:
-- **Build**: Compiling the project and running tests.
-- **Test**: Executing unit and integration tests.
-- **Deploy**: Automatically deploying the application to the production environment upon successful build and test stages.
+The CI/CD pipeline is configured using Azure Pipelines. The pipeline includes:
+- Code Linting: Runs flake8 to enforce Python style guidelines;
+- Unit Tests & Coverage: Executes pytest with --cov to ensure test coverage.
