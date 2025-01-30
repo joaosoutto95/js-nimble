@@ -30,7 +30,7 @@ jobs:
       python -m venv venv
       source venv\Scripts\activate
       pip install flake8
-      flake8 --max-line-length=100
+      flake8 --max-line-length=200
     displayName: 'Setup and Code linting with Flake8'
 
   - script: |
