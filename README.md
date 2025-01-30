@@ -27,13 +27,13 @@
 ## Explanation of the Visualizations
 
 The .pbx file inside solution-part3 folder has 2 pages:
-    - **FIRST PAGE**: 
-        - Plot with the distribution of the whole Air Passengers dataset that was used for training;
-        - Some KPI's as well that could help monitor the data quality that is being ingested on the model.
-    - **SECOND PAGE**: 
-        - Plot showing the Predicted values vs. Actual to show how well fitted the new trained model is;
-        - Model performance metrics on cards - MAPE, MAE, MSE, and RMSE;
-        - Feature Importance plot to show the corrilation on training.
+- **FIRST PAGE**: 
+    - Plot with the distribution of the whole Air Passengers dataset that was used for training;
+    - Some KPI's as well that could help monitor the data quality that is being ingested on the model.
+- **SECOND PAGE**: 
+    - Plot showing the Predicted values vs. Actual to show how well fitted the new trained model is;
+    - Model performance metrics on cards - MAPE, MAE, MSE, and RMSE;
+    - Feature Importance plot to show the corrilation on training.
 
 ## CI/CD Pipeline Description
 
