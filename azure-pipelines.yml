@@ -11,7 +11,7 @@ pr:
 pool:
   name: Default
   demands:
-    - Agent.Name -equals N23
+    - Agent.Name -equals NIMBLE
 
 jobs:
 - job: CI
