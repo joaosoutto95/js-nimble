@@ -1,60 +1,58 @@
+# trigger:
+#   - main
+
+# pool:
+#   name: 'Default'
+
+# steps:
+#   - script: echo "Azure DevOps setup completed!"
+#     displayName: 'Run a simple script'
+
+
 trigger:
-  - main
+  branches:
+    exclude:
+      - main
+
+pr:
+  branches:
+    include:
+      - '*'
 
 pool:
   name: 'Default'
 
-steps:
-  - script: echo "Azure DevOps setup completed!"
-    displayName: 'Run a simple script'
+jobs:
+- job: CI
+  displayName: 'Basic CI'
+  pool:
+    vmImage: 'ubuntu-latest'
+
+  steps:
+  - checkout: self
+
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.9'
+      addToPath: true
+
+  - script: |
+      echo "Basic CI Pipeline"
+    displayName: 'Script running'
+
+  - script: |
+      flake8 --max-line-length=100
+    displayName: 'Code Linting'
+
+  - script: |
+      pytest --cov=.
+    displayName: 'Run Unit Tests and Generate Coverage Report'
 
 
-# trigger:
-#   branches:
-#     exclude:
-#       - main
-
-# pr:
-#   branches:
-#     include:
-#       - '*'
-
-# pool:
-#   name: Default
-#   demands:
-#     - Agent.Name -equals NIMBLE
-
-# jobs:
-# - job: CI
-#   displayName: 'Basic CI'
-#   pool:
-#     vmImage: 'ubuntu-latest'
-
-#   steps:
-#   - checkout: self
-
-#   - task: UsePythonVersion@0
-#     inputs:
-#       versionSpec: '3.9'
-#       addToPath: true
-
-#   - script: |
-#       echo "Basic CI Pipeline"
-#     displayName: 'Script running'
-
-#   - script: |
-#       flake8 --max-line-length=100
-#     displayName: 'Code Linting'
-
-#   - script: |
-#       pytest --cov=.
-#     displayName: 'Run Unit Tests and Generate Coverage Report'
-
-
-# - job: Release
-#   displayName: "Release Pipeline"
-#   dependsOn: CI
-#   condition: succeeded()
-#   steps:
-#     - script: echo "Basic Release Pipeline"
-#       displayName: "Release"
+- job: Release
+  displayName: "Release Pipeline"
+  dependsOn: CI
+  condition: succeeded()
+  steps:
+    - script: echo "Basic Release Pipeline"
+      displayName: "Release"
