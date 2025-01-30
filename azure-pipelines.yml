@@ -3,13 +3,15 @@ trigger:
     exclude:
       - main
 
+pool:
+  name: Default
+  demands:
+    - Agent.Name -equals N23
+
 pr:
   branches:
     include:
       - '*'
-
-pool:
-  name: Default
 
 jobs:
 - job: CI
