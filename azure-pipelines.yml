@@ -37,7 +37,7 @@ jobs:
     displayName: 'Code linting with Flake8'
 
   - script: |
-      pytest --cov=.
+      pytest --cov=. tests/
     displayName: 'Run Unit Tests and Generate Coverage Report'
 
 
