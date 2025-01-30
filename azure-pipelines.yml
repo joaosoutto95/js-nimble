@@ -28,10 +28,13 @@ jobs:
 
   - script: |
       python -m venv venv
-      source venv\Scripts\activate
-      pip install flake8
+      venv\Scripts\activate
+      pip install flake8 pytest pytest-cov
+    displayName: 'Setup venv and dependencies'
+
+  - script: |
       flake8 --max-line-length=200
-    displayName: 'Setup and Code linting with Flake8'
+    displayName: 'Code linting with Flake8'
 
   - script: |
       pytest --cov=.
